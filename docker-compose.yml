@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: react-image
+    container_name: react-container
+    volumes:
+      - ./:/app
+      # Note to self: this maps directory where docker-compose.yml is to the src folder inside the PWD of the container
+    tty: true
+    ports:
+      - 3000:3000
+    working_dir: /app
+    command: npm start
