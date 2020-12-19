@@ -2,7 +2,9 @@ import ProductRow from './ProductRow';
 import ProductCategoryRow from './ProductCategoryRow';
 
 function ProductTable (props) {
-  const products = renderRows(props.products);
+  let filteredProducts = filterByName(props.products, props.filterText);
+  filteredProducts = filterByStock(filteredProducts, props.inStockOnly);
+  const productRows = renderRows(filteredProducts);
 
   return (
     <table>
@@ -14,7 +16,7 @@ function ProductTable (props) {
         </tr>
       </thead>
       <tbody>
-        {products}
+        {productRows}
       </tbody>
     </table>
   );
@@ -44,6 +46,29 @@ function groupByCategory (groupedProducts, currentProduct) {
 
   groupedProducts[category].push(currentProduct);
   return groupedProducts;
+}
+
+function filterByName (products, name) {
+  let filteredProducts = products;
+
+  if (name !== '') {
+    filteredProducts = products.filter(product => {
+      return product.name.toUpperCase().includes(name.toUpperCase());
+    });
+  }
+
+  return filteredProducts;
+}
+
+function filterByStock (products, availability) {
+  let filteredProducts = products;
+  if (availability) {
+    filteredProducts = products.filter(product => {
+      return product.stocked === availability;
+    });
+  }
+
+  return filteredProducts;
 }
 
 export default ProductTable;
