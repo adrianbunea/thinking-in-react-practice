@@ -1,7 +1,7 @@
 export default function ProductRow (props) {
   const product = props.product;
   return (
-    <tr>
+    <tr className="product-table__row product-table__row--product">
       <td>
         {product.name}
       </td>

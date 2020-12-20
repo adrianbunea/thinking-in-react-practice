@@ -7,7 +7,7 @@ function FilterableProductTable (props) {
   const [inStockOnly, setInStockOnly] = useState(false);
 
   return (
-    <>
+    <div className="container">
       <SearchBar
         filterText={filterText}
         inStockOnly={inStockOnly}
@@ -19,7 +19,7 @@ function FilterableProductTable (props) {
         filterText={filterText}
         inStockOnly={inStockOnly}
       />
-    </>
+    </div>
   );
 }
 

@@ -7,9 +7,9 @@ function ProductTable (props) {
   const productRows = renderRows(filteredProducts);
 
   return (
-    <table>
+    <table className="product-table">
       <thead>
-        <tr>
+        <tr className="product-table__header product-table__row">
           <th>Name</th>
           <th>Price</th>
           <th>Stocked</th>
@@ -27,10 +27,16 @@ function renderRows (products) {
 
   const rows = [];
   for (const [category, products] of Object.entries(productsByCategory)) {
-    rows.push(<ProductCategoryRow category={category} key={`category-${category}`} />);
+    rows.push(<ProductCategoryRow
+      category={category}
+      key={`category-${category}`}
+    />);
 
     products.forEach(product => {
-      rows.push(<ProductRow product={product} key={`product-name-${product.name}`} />);
+      rows.push(<ProductRow
+        product={product}
+        key={`product-name-${product.name}`}
+      />);
     });
   }
 
